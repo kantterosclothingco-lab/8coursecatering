@@ -1,28 +1,38 @@
-document.getElementById("quoteForm").addEventListener("submit", function (e) {
+document.getElementById("quoteForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const eventType = document.getElementById("eventType").value;
-  const eventDate = document.getElementById("eventDate").value;
-  const guests = document.getElementById("guests").value;
-  const message = document.getElementById("message").value;
+  const submitButton = this.querySelector("button");
+  submitButton.textContent = "Sending...";
+  submitButton.disabled = true;
 
-  const inquiry = `
-New Catering Inquiry:
+  const bookingData = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    eventType: document.getElementById("eventType").value,
+    eventDate: document.getElementById("eventDate").value,
+    guests: document.getElementById("guests").value,
+    message: document.getElementById("message").value,
+  };
 
-Name: ${name}
-Phone: ${phone}
-Event Type: ${eventType}
-Event Date: ${eventDate}
-Guests: ${guests}
-Message: ${message}
-  `;
+  try {
+    const response = await fetch("/api/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    });
 
-  const encodedMessage = encodeURIComponent(inquiry);
+    if (response.ok) {
+      alert("Thank you! Your booking inquiry has been sent.");
+      document.getElementById("quoteForm").reset();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  } catch (error) {
+    alert("Unable to send inquiry. Please contact Yzabel directly at 0413 326 097.");
+  }
 
-  // Replace this with your WhatsApp number later
-  const whatsappNumber = "639000000000";
-
-  window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  submitButton.textContent = "Send Inquiry";
+  submitButton.disabled = false;
 });
