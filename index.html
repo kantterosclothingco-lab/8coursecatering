@@ -149,17 +149,61 @@
       <p><strong>Address:</strong> 8 High Street, Bendigo VIC 3550</p>
     </div>
 
-    <form id="quoteForm">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="tel" id="phone" placeholder="Phone Number" required />
-      <input type="text" id="eventType" placeholder="Event Type" required />
-      <input type="date" id="eventDate" required />
-      <input type="number" id="guests" placeholder="Number of Guests" required />
-      <textarea id="message" placeholder="Message / Special Request"></textarea>
+<form id="quoteForm">
 
-      <button type="submit">Send Inquiry</button>
-    </form>
-  </section>
+    <input type="hidden" name="access_key" value="6be095d2-7add-4781-8def-f9b7fe655378">
+    <input type="hidden" name="subject" value="New Booking Inquiry - 8Course Catering">
+    <input type="hidden" name="from_name" value="8Course Catering Website">
+
+    <input
+        type="checkbox"
+        name="botcheck"
+        style="display:none;">
+
+    <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your Name"
+        required>
+
+    <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="Phone Number"
+        required>
+
+    <input
+        type="text"
+        id="eventType"
+        name="eventType"
+        placeholder="Event Type"
+        required>
+
+    <input
+        type="date"
+        id="eventDate"
+        name="eventDate"
+        required>
+
+    <input
+        type="number"
+        id="guests"
+        name="guests"
+        placeholder="Number of Guests"
+        required>
+
+    <textarea
+        id="message"
+        name="message"
+        placeholder="Message / Special Request"></textarea>
+
+    <button type="submit">
+        Send Booking Inquiry
+    </button>
+
+</form>
 
   <footer>
     <img src="assets/images/logo.png" alt="8Course Catering Logo" class="footer-logo" />

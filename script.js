@@ -5,32 +5,24 @@ document.getElementById("quoteForm").addEventListener("submit", async function (
   submitButton.textContent = "Sending...";
   submitButton.disabled = true;
 
-  const bookingData = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    eventType: document.getElementById("eventType").value,
-    eventDate: document.getElementById("eventDate").value,
-    guests: document.getElementById("guests").value,
-    message: document.getElementById("message").value,
-  };
+  const formData = new FormData(this);
 
   try {
-    const response = await fetch("/api/booking", {
+    const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookingData),
+      body: formData
     });
 
-    if (response.ok) {
-      alert("Thank you! Your booking inquiry has been sent to 8Course Catering.");
-      document.getElementById("quoteForm").reset();
+    const result = await response.json();
+
+    if (result.success) {
+      alert("Thank you! Your booking inquiry has been sent.");
+      this.reset();
     } else {
-      alert("Something went wrong. Please try again or contact Yzabel at 0413 326 097.");
+      alert("Something went wrong. Please contact Yzabel at 0413 326 097.");
     }
   } catch (error) {
-    alert("Unable to send inquiry. Please contact Yzabel directly at 0413 326 097.");
+    alert("Unable to send inquiry. Please contact Yzabel at 0413 326 097.");
   }
 
   submitButton.textContent = "Send Inquiry";
