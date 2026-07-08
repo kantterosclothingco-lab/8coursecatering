@@ -24,10 +24,10 @@ document.getElementById("quoteForm").addEventListener("submit", async function (
     });
 
     if (response.ok) {
-      alert("Thank you! Your booking inquiry has been sent.");
+      alert("Thank you! Your booking inquiry has been sent to 8Course Catering.");
       document.getElementById("quoteForm").reset();
     } else {
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong. Please try again or contact Yzabel at 0413 326 097.");
     }
   } catch (error) {
     alert("Unable to send inquiry. Please contact Yzabel directly at 0413 326 097.");
