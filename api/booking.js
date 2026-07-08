@@ -2,25 +2,36 @@ const nodemailer = require("nodemailer");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
+    return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const { name, phone, eventType, eventDate, guests, message } = req.body;
+  try {
+    const { name, phone, eventType, eventDate, guests, message } = req.body;
 
-  if (!name || !phone || !eventType || !eventDate || !guests) {
-    return res.status(400).json({ message: "Missing required fields" });
-  }
+    if (!name || !phone || !eventType || !eventDate || !guests) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields"
+      });
+    }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      return res.status(500).json({
+        success: false,
+        message: "Missing Gmail environment variables"
+      });
+    }
 
-  const emailBody = `
-New Catering Booking Inquiry
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD
+      }
+    });
+
+    const emailText = `
+NEW 8COURSE CATERING BOOKING INQUIRY
 
 Name: ${name}
 Phone: ${phone}
@@ -35,12 +46,24 @@ Website:
 8coursecatering.com
 `;
 
-  await transporter.sendMail({
-    from: `"8Course Catering Website" <${process.env.GMAIL_USER}>`,
-    to: process.env.GMAIL_USER,
-    subject: `New Booking Inquiry - ${eventType}`,
-    text: emailBody,
-  });
+    await transporter.sendMail({
+      from: `"8Course Catering Website" <${process.env.GMAIL_USER}>`,
+      to: "8coursecatering@gmail.com",
+      subject: `New Booking Inquiry - ${eventType}`,
+      text: emailText
+    });
 
-  return res.status(200).json({ message: "Booking inquiry sent successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "Booking inquiry sent successfully"
+    });
+
+  } catch (error) {
+    console.error("Booking email error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
 };
