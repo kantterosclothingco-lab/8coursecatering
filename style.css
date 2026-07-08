@@ -492,3 +492,65 @@ height:220px;
 }
 
 }
+/* OUR CRAFT DETAILS */
+.hidden {
+  display: none !important;
+}
+
+.craft-details {
+  background: #ffffff;
+  padding: 90px 8%;
+  color: #111111;
+}
+
+.craft-box {
+  max-width: 950px;
+  margin: 0 auto 45px;
+  padding: 35px;
+  border-bottom: 1px solid #e4ddcf;
+}
+
+.craft-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  color: #000000;
+  margin-bottom: 18px;
+}
+
+.craft-box p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #333333;
+  margin-bottom: 18px;
+}
+
+.craft-button {
+  display: inline-block;
+  background: #000000;
+  color: #ffffff;
+  padding: 15px 28px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.craft-button:hover {
+  background: #c8a248;
+  color: #000000;
+}
+
+.know-more-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  padding: 0;
+}
+
+.know-more-btn:hover {
+  color: #c8a248;
+}

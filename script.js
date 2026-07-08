@@ -1,3 +1,20 @@
+document.querySelectorAll(".know-more-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const targetId = this.getAttribute("data-target");
+    const craftSection = document.getElementById("craft-details");
+
+    craftSection.classList.remove("hidden");
+
+    document.querySelectorAll(".craft-box").forEach(function (box) {
+      box.classList.add("hidden");
+    });
+
+    document.getElementById(targetId).classList.remove("hidden");
+
+    craftSection.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
 document.getElementById("quoteForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
