@@ -72,3 +72,28 @@ slides[currentSlide].classList.add("active");
 }
 
 setInterval(showSlides,3000);
+/* ===========================
+   A LA CARTE SLIDESHOW
+=========================== */
+
+const alaSlides = document.querySelectorAll("#ala-carte-info .ala-slide");
+
+let currentAlaSlide = 0;
+
+function showAlaSlides() {
+
+    if (alaSlides.length === 0) return;
+
+    alaSlides.forEach(slide => slide.classList.remove("active"));
+
+    currentAlaSlide++;
+
+    if (currentAlaSlide >= alaSlides.length) {
+        currentAlaSlide = 0;
+    }
+
+    alaSlides[currentAlaSlide].classList.add("active");
+
+}
+
+setInterval(showAlaSlides, 3000);
