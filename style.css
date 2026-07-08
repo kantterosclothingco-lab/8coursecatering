@@ -554,3 +554,118 @@ height:220px;
 .know-more-btn:hover {
   color: #c8a248;
 }
+/* ===========================
+   CRAFT FEATURE
+=========================== */
+
+.craft-feature{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+
+}
+
+.craft-text{
+
+flex:1;
+
+}
+
+.craft-slideshow{
+
+flex:1;
+position:relative;
+width:100%;
+height:520px;
+overflow:hidden;
+border-radius:25px;
+box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.slide{
+
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+
+opacity:0;
+
+transition:opacity 1s ease;
+
+}
+
+.slide.active{
+
+opacity:1;
+
+}
+
+.craft-text h3{
+
+font-size:48px;
+
+margin-bottom:25px;
+
+font-family:'Cormorant Garamond',serif;
+
+}
+
+.craft-text p{
+
+font-size:18px;
+
+line-height:1.9;
+
+margin-bottom:20px;
+
+}
+
+.craft-button{
+
+display:inline-block;
+
+padding:16px 34px;
+
+background:#000;
+
+color:#fff;
+
+text-decoration:none;
+
+border-radius:40px;
+
+margin-top:20px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.craft-button:hover{
+
+background:#c7a33d;
+
+color:#000;
+
+}
+
+@media(max-width:991px){
+
+.craft-feature{
+
+flex-direction:column;
+
+}
+
+.craft-slideshow{
+
+height:350px;
+
+}
+
+}
