@@ -45,55 +45,29 @@ document.getElementById("quoteForm").addEventListener("submit", async function (
   submitButton.textContent = "Send Inquiry";
   submitButton.disabled = false;
 });
-/* ===========================
-   COCKTAIL SLIDESHOW
-=========================== */
+function startSlideshow(containerId) {
 
-const slides=document.querySelectorAll("#canapes-info .slide");
+    const slides = document.querySelectorAll(`#${containerId} .craft-slideshow img`);
 
-let currentSlide=0;
+    if (slides.length === 0) return;
 
-function showSlides(){
+    let current = 0;
 
-if(slides.length===0) return;
+    setInterval(() => {
 
-slides.forEach(slide=>slide.classList.remove("active"));
+        slides[current].classList.remove("active");
 
-currentSlide++;
+        current++;
 
-if(currentSlide>=slides.length){
+        if (current >= slides.length) {
+            current = 0;
+        }
 
-currentSlide=0;
+        slides[current].classList.add("active");
 
-}
-
-slides[currentSlide].classList.add("active");
+    }, 3000);
 
 }
 
-setInterval(showSlides,3000);
-/* ===========================
-   A LA CARTE SLIDESHOW
-=========================== */
-
-const alaSlides = document.querySelectorAll("#ala-carte-info .ala-slide");
-
-let currentAlaSlide = 0;
-
-function showAlaSlides() {
-
-    if (alaSlides.length === 0) return;
-
-    alaSlides.forEach(slide => slide.classList.remove("active"));
-
-    currentAlaSlide++;
-
-    if (currentAlaSlide >= alaSlides.length) {
-        currentAlaSlide = 0;
-    }
-
-    alaSlides[currentAlaSlide].classList.add("active");
-
-}
-
-setInterval(showAlaSlides, 3000);
+startSlideshow("ala-carte-info");
+startSlideshow("canapes-info");
