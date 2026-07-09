@@ -1,4 +1,3 @@
-/* KNOW MORE BUTTONS */
 document.querySelectorAll(".know-more-btn").forEach(function (button) {
   button.addEventListener("click", function () {
     const targetId = this.getAttribute("data-target");
@@ -10,36 +9,33 @@ document.querySelectorAll(".know-more-btn").forEach(function (button) {
       box.classList.add("hidden");
     });
 
-    document.getElementById(targetId).classList.remove("hidden");
+    const selectedBox = document.getElementById(targetId);
+    selectedBox.classList.remove("hidden");
+
+    const slides = selectedBox.querySelectorAll(".craft-slideshow img");
+    slides.forEach(function (slide, index) {
+      slide.classList.remove("active");
+      if (index === 0) slide.classList.add("active");
+    });
 
     craftSection.scrollIntoView({ behavior: "smooth" });
   });
 });
 
-
-/* UNIVERSAL SLIDESHOW */
 function startSlideshow(containerId) {
-  const slides = document.querySelectorAll(`#${containerId} .craft-slideshow img`);
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
+  const slides = container.querySelectorAll(".craft-slideshow img");
   if (slides.length === 0) return;
 
   let current = 0;
-
-  slides.forEach(function (slide, index) {
-    slide.classList.remove("active");
-    if (index === 0) {
-      slide.classList.add("active");
-    }
-  });
 
   setInterval(function () {
     slides[current].classList.remove("active");
 
     current++;
-
-    if (current >= slides.length) {
-      current = 0;
-    }
+    if (current >= slides.length) current = 0;
 
     slides[current].classList.add("active");
   }, 3000);
@@ -49,8 +45,6 @@ startSlideshow("ala-carte-info");
 startSlideshow("buffet-info");
 startSlideshow("canapes-info");
 
-
-/* BOOKING FORM - WEB3FORMS */
 document.getElementById("quoteForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
