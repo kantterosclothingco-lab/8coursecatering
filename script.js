@@ -45,9 +45,13 @@ document.getElementById("quoteForm").addEventListener("submit", async function (
   submitButton.textContent = "Send Inquiry";
   submitButton.disabled = false;
 });
-function startSlideshow(containerId) {
+/* ==========================================
+   UNIVERSAL SLIDESHOW
+========================================== */
 
-    const slides = document.querySelectorAll(`#${containerId} .craft-slideshow img`);
+function startSlideshow(containerId, imageClass) {
+
+    const slides = document.querySelectorAll(`#${containerId} .${imageClass}`);
 
     if (slides.length === 0) return;
 
@@ -69,5 +73,6 @@ function startSlideshow(containerId) {
 
 }
 
-startSlideshow("ala-carte-info");
-startSlideshow("canapes-info");
+startSlideshow("ala-carte-info", "ala-slide");
+startSlideshow("buffet-info", "buffet-slide");
+startSlideshow("canapes-info", "slide");
